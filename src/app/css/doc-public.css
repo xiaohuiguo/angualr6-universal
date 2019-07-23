@@ -1,0 +1,502 @@
+/**
+ * DesCription: 官网公共样式
+ */
+
+
+/******************         全局         ******************/
+
+.min-width-block {
+    min-width: 1263px;
+    margin: auto
+}
+
+.width-block {
+    width: 1263px;
+    margin: auto;
+}
+
+.header-bg,
+.footer-bg {
+    background-color: #23232F;
+}
+
+p {
+    line-height: 1.5rem;
+    text-align: left
+}
+
+p+p {
+    margin-top: 20px
+}
+
+.btn-outline-primary-white {
+    border-color: #818793;
+    color: #fff;
+    background: transparent
+}
+
+.btn-outline-primary-white:hover {
+    background: #fff;
+    color: #4074e1
+}
+
+.title-icon {
+    width: 80px;
+    height: 75px;
+    display: inline-block;
+    font-size: 65px;
+    line-height: 75px;
+    color: #4074e1;
+}
+
+.team {
+    display: inline-block;
+    width: 143px;
+    height: 143px;
+    background: url("/assets/image/pc/doc/dc/ruijiang/cooperation.png")
+}
+
+a:focus,
+a:hover {
+    color: #1d4fb8;
+    text-decoration: none
+}
+
+[hidden] {
+    display: none !important
+}
+
+.hidden {
+    display: none !important
+}
+
+.img-block {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/******************         banner         ******************/
+
+.banner {
+    width: 100%;
+    height: 372px;
+    color: #fff;
+    padding: 70px 0 90px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.banner h1,
+.banner .title {
+    font-size: 34px;
+    padding-bottom: 30px;
+    font-weight: normal;
+}
+
+.banner p,
+.banner .describle {
+    width: 700px;
+    font-size: 14px;
+    padding-bottom: 40px;
+}
+
+.banner-btn button,
+.banner-btn a {
+    margin-right: 15px;
+    padding: 7px 20px;
+}
+
+.banner-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.pro-banner {
+    z-index: 1;
+    position: relative
+}
+
+.banner .content {
+    width: 1200px;
+    margin: auto;
+}
+
+
+/******************         导航         ******************/
+
+.nav {
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid #eaedf1;
+    font-size: 16px;
+    color: #888;
+}
+
+.nav a {
+    cursor: pointer;
+    float: left;
+    text-align: center;
+    padding: 23px 0 22px;
+    text-decoration: none;
+    color: #888;
+}
+
+.nav a:hover,
+.nav .selected {
+    border-bottom: 2px solid #4074e1;
+    color: #4074e1;
+}
+
+.top-nav a {
+    padding: 23px 0 22px;
+}
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    z-index: 2000;
+    background: white;
+    box-shadow: 1px 1px 5px 0 #e9e8e9;
+    height: 70px;
+}
+
+.nav .content {
+    width: 1200px;
+    margin: auto;
+}
+
+.nav a {
+    width: 20%;
+}
+
+
+/******************         block         ******************/
+
+.bg-block-1,
+.bg-block-2,
+.bg-block-3 {
+    text-align: center;
+    padding: 66px 0;
+}
+
+.bg-block-1 h2,
+.bg-block-2 h2,
+.bg-block-3 h2 {
+    font-size: 33px;
+    font-weight: 100;
+    color: #2f2f2f;
+    margin-bottom: 46px;
+    line-height: 37px
+}
+
+.bg-block-1 {
+    background: #fff
+}
+
+.bg-block-2 {
+    background: #f4f4f4
+}
+
+.bg-block-3 {
+    background: #23232f;
+    color: #fff
+}
+
+.bg-block-3 h2 {
+    color: #fff
+}
+
+
+/******************         垂直居中         ******************/
+
+.vertical-left,
+.vertical-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.vertical-left:before,
+.vertical-right:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%
+}
+
+.vertical-left .vertical-center,
+.vertical-right .vertical-center {
+    display: inline-block;
+    max-height: 100%;
+    vertical-align: middle;
+    max-width: 98%
+}
+
+.vertical-left {
+    left: 0;
+}
+
+.vertical-right {
+    right: 0;
+}
+
+.text-indent {
+    text-indent: 2rem;
+}
+
+
+/*************         其他         **********/
+
+.header-background {
+    background-color: #23232F;
+    min-width: 1263px
+}
+
+.footer-config {
+    color: #9f9f9f !important;
+    background-color: #23232F;
+}
+
+
+/******************         解决方案公共样式         ******************/
+
+.second-background {
+    background: #f9fbfe;
+}
+
+.mar-right-10 {
+    margin-right: 10px;
+}
+
+.mar-right-50 {
+    margin-right: 50px;
+}
+
+.mar-bottom-50 {
+    margin-bottom: 50px;
+}
+
+.tubiao-group1 {
+    background-position-y: 0;
+    margin: auto;
+    width: 115px;
+    height: 115px;
+}
+
+.tubiao-group2 {
+    background-position-y: -115px;
+    margin: auto;
+    width: 80px;
+    height: 90px;
+}
+
+.tubiao-group3 {
+    background-position-y: -205px;
+    margin: auto;
+    width: 115px;
+    height: 115px;
+}
+
+.custom-group {
+    margin: auto;
+    width: 256px;
+    height: 70px;
+}
+
+
+/*每个内容部分*/
+
+.part {
+    width: 1200px;
+    margin: auto;
+    text-align: center;
+    padding: 60px 0 80px;
+}
+
+.part .title {
+    font-size: 30px;
+    color: #444444;
+}
+
+.part .subtitle {
+    font-size: 12px;
+    color: #999999;
+}
+
+.part .arrow {
+    padding-bottom: 30px;
+    color: #4074e1;
+}
+
+.part .arrow .icon {
+    font-size: 12px;
+}
+
+
+/*行业问题*/
+
+.question li {
+    cursor: default;
+    float: left;
+    width: 285px;
+    border: 1px solid #eaedf1;
+    margin-right: 20px;
+}
+
+.question li .generate {
+    font-size: 18px;
+    color: #555555;
+    padding: 25px 0 30px;
+}
+
+.question li .discrible,
+.server li .discrible,
+.application li .discrible {
+    text-align: left;
+    font-size: 14px;
+    color: #888888;
+}
+
+.question .selected,
+.server li:hover,
+.server .selected {
+    box-shadow: 0 0 5px 0 #4074e1;
+    border: 1px solid #4074e1;
+}
+
+.question .tubiao-1 {
+    background-position-x: 0;
+}
+
+.question .tubiao-2 {
+    background-position-x: -115px;
+}
+
+.question .tubiao-3 {
+    background-position-x: -230px;
+}
+
+.question .tubiao-4 {
+    background-position-x: -345px;
+}
+
+
+/*服务优势*/
+
+.server li {
+    display: inline-block;
+    width: 570px;
+    height: 180px;
+    border: 1px solid #eaedf1;
+    padding: 35px 30px;
+    box-shadow: 3px 3px 5px 0 #e9e8e9;
+}
+
+.server .tubiao {
+    margin-top: 5px;
+}
+
+.server li .content {
+    width: 80%;
+    text-align: left;
+}
+
+.server li .generate {
+    font-size: 18px;
+    color: #555555;
+    padding-bottom: 10px;
+}
+
+.server .tubiao-1 {
+    background-position-x: 0;
+}
+
+.server .tubiao-2 {
+    background-position-x: -80px;
+}
+
+.server .tubiao-3 {
+    background-position-x: -160px;
+}
+
+.server .tubiao-4 {
+    background-position-x: -240px;
+}
+
+
+/*应用场景*/
+
+.application {
+    text-align: left;
+}
+
+.application li {
+    cursor: default;
+    display: inline-block;
+    width: 400px;
+    height: 355px;
+    padding: 40px 55px;
+}
+
+.application li .generate {
+    font-size: 18px;
+    color: #555555;
+    padding: 30px 0 25px;
+}
+
+.application li:hover {
+    box-shadow: 0 0 10px -1px #e9e8e9;
+}
+
+.application .tubiao-1 {
+    background-position-x: 0;
+}
+
+.application .tubiao-2 {
+    background-position-x: -115px;
+}
+
+.application .tubiao-3 {
+    background-position-x: -230px;
+}
+
+.application .tubiao-4 {
+    background-position-x: -345px;
+}
+
+.application .tubiao-5 {
+    background-position-x: -460px;
+}
+
+.application .tubiao-6 {
+    background-position-x: -575px;
+}
+
+.custom li {
+    display: inline-block;
+    width: 285px;
+    height: 140px;
+    border: 1px solid #eaedf1;
+    padding: 37px 15px;
+}
+
+.custom .custom-1 {
+    background-position-x: 0;
+}
+
+.custom .custom-2 {
+    background-position-x: -256px;
+}
+
+.custom .custom-3 {
+    background-position-x: -512px;
+}
+
+.custom .custom-4 {
+    background-position-x: -768px;
+}

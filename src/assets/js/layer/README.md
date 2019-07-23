@@ -1,0 +1,1 @@
+此插件依赖JQ 使用方法var layer=require("xxx")(jq); extend使用require("extendjs模块")(layer);

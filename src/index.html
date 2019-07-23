@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NgUniversalDemo</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="assets/js/rjBowerCheck/rjBowerCheck.js?v=20180920"></script>
+  <script>
+        var rjBowerCheck = new RJBowerCheck();
+        var url = window.location.href;
+        if (rjBowerCheck.rj_mobileCheck()) {
+            var locationHref = rjBowerCheck.rj_platformCheck();
+            var paramUrl = url.substring(url.indexOf('?'));
+            window.location.href = locationHref.appUrl + paramUrl;
+        }
+        var platformName = rjBowerCheck.rj_platformName(); // 获取环境test|preonline|online
+        window['__Zone_disable_IE_check'] = true;
+            console.log(rjBowerCheck);
+            console.log(url);
+    </script>
+</head>
+<body>
+  <app-root></app-root>
+  <script>
+        //百度统计
+        var _hmt = _hmt || [];
+        (function() {
+            if (platformName === 'online') { // 如果是线上环境才加载百度统计代码
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?e44ca6f988e9f42330c78829eaedcf54";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            }
+        })();
+    </script>
+    <script type="text/javascript">
+        //今日头条跟踪
+        (function(root) {
+            if (platformName === 'online') { // 如果是线上环境才加载今日头条跟踪代码
+                root._tt_config = true;
+                var ta = document.createElement('script');
+                ta.type = 'text/javascript';
+                ta.async = true;
+                ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
+                ta.onerror = function() {
+                    var request = new XMLHttpRequest();
+                    var web_url = window.encodeURIComponent(window.location.href);
+                    var js_url = ta.src;
+                    var url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1617723446570003';
+                    request.open('GET', url, true);
+                    request.send(null);
+                }
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ta, s);
+            }
+        })(window);
+    </script>
+</body>
+</html>

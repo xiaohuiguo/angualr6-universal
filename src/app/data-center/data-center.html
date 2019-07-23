@@ -1,0 +1,249 @@
+<div class="min-width-block">
+    <!-- 头部 -->
+    <!--<div class="header-bg">
+        <app-header [homeNav]=true></app-header>
+    </div>-->
+
+    <!-- banner -->
+    <div class="banner-outer {{navTitle.bannerBg}}">
+        <div class="banner" [ngStyle]="{'background-image': 'url('+navTitle.imgUrl+')'}">
+            <div class="content width-block">
+                <div class="title">{{navTitle.name}}</div>
+                <div class="describle" [innerHtml]="navTitle.content"></div>
+                <div class="banner-btn">
+                    <div *ngFor="let item of navList" (click)="productNav()" style="display:inline-block">
+                        <a class="btn" [ngClass]="{'btn-primary': item.engLishName === navObj.address,'btn-outline-primary-white': item.engLishName !=navObj.address}" href={{item.url}}>{{item.name}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 简介-->
+    <div class="bg-block-1" *ngIf="pageData && pageData['brief']">
+        <h2>{{pageData.brief.title}}</h2>
+        <div class="width-block dc-brief clearfloat">
+            <div class="swiper-container img-block img-left-position" [ngStyle]="{'height': pageData.brief.imgHeight ? pageData.brief.imgHeight : 'auto'}">
+                <!--<div class="swiper-wrapper">
+                    <div class="swiper-slide" *ngFor="let item of pageData.brief.imgUrl">
+                        <img class="img img-left-position" [ngClass]="{'swiper-lazy':item != pageData.brief.imgUrl[0]}" [ngStyle]="{'background-image': 'url('+item+')'}" data-src={{item}}>
+                        <div class="swiper-lazy-preloader" *ngIf="item != pageData.brief.imgUrl[0]"></div>
+                    </div>
+                </div>-->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"><i class="icon icon-last-page icon-css"></i></div>
+                <div class="swiper-button-next"><i class="icon icon-next-page icon-css"></i></div>
+            </div>
+            <div class="video" (click)="isShowVideo(true)" *ngIf="pageData.brief.videoSrc"><i class="icon icon-run icon-css icon-css-right-inside text-primary"></i>查看视频</div>
+            <div class="img-left-content clearfloat">
+                <p class="text-indent">{{pageData.brief.introduction}}</p>
+                <ul class="dc-brief-ul">
+                    <li *ngFor="let item of pageData.brief.features">
+                        <i [ngStyle]="{'background-position-x': item.icon * (-18) + 'px'}"></i>
+                        <label class="text-muted-l">{{item.name}}</label>
+                        <p>{{item.content}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 电力系统 -->
+    <div class="bg-block-2" *ngIf="pageData && pageData['module1']">
+        <h2>{{pageData.module1.title}}</h2>
+        <div class="width-block img-top-block bg-white clearfloat">
+            <div class="swiper-container img-block">
+                <!--<div class="swiper-wrapper">
+                    <div class="swiper-slide" *ngFor="let item of pageData.module1.imgUrl">
+                        <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item.url[0]+')'}" *ngIf="item.imgWidth === 'long'"></div>
+                        <div class="img img-left-position" *ngIf="item.imgWidth === 'short'">
+                            <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item.url[0]+')'}" style="width: 590px;"></div>
+                            <div class="img img-left-position" style="width: 20px;left:590px;background-image: url('https://static.eflycloud.com/V5/pc/image/doc/dataCenter/splits1.png ')"></div>
+                            <div class="img img-left-position" style="width: 590px;left: 610px;" [ngStyle]="{'background-image': 'url('+item.url[1]+')'}"></div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"><i class="icon icon-last-page icon-css"></i></div>
+                <div class="swiper-button-next"><i class="icon icon-next-page icon-css"></i></div>
+            </div>
+            <ul class="data-bottom-content float-left">
+                <li *ngFor="let item of pageData.module1.features.leftContent">
+                    <i class="icon icon-vvv text-primary icon-css icon-css-right-inside"></i><label class="text-muted-l">{{item.name}}</label>
+                    <p>{{item.content}}</p>
+                </li>
+            </ul>
+            <ul class="data-bottom-content float-right data-right-block">
+                <li *ngFor="let item of pageData.module1.features.rightContent">
+                    <i class="icon icon-vvv text-primary icon-css icon-css-right-inside"></i><label class="text-muted-l">{{item.name}}</label>
+                    <p>{{item.content}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 空调系统 -->
+    <div class="bg-block-3" *ngIf="pageData && pageData['module2']">
+        <h2>{{pageData.module2.title}}</h2>
+        <div class="width-block img-left-block bg-black clearfloat">
+            <div class="swiper-container img-block img-left-position">
+                <!--<div class="swiper-wrapper">
+                    <div class="swiper-slide" *ngFor="let item of pageData.module2.imgUrl">
+                        <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item+')'}"></div>
+                    </div>
+                </div>-->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"><i class="icon icon-last-page icon-css"></i></div>
+                <div class="swiper-button-next"><i class="icon icon-next-page icon-css"></i></div>
+            </div>
+            <ul class="data-right-content">
+                <li *ngFor="let item of pageData.module2.features">
+                    <i class="icon icon-vvv text-primary icon-css icon-css-right-inside"></i><label class="text-muted-l">{{item.name}}</label>
+                    <p>{{item.content}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 消防系统 -->
+    <div class="bg-block-2" *ngIf="pageData && pageData['module3']">
+        <h2>{{pageData.module3.title}}</h2>
+        <div class="width-block img-right-block bg-white clearfloat">
+            <div class="swiper-container img-block img-right-position">
+                <!--<div class="swiper-wrapper">
+                    <div class="swiper-slide" *ngFor="let item of pageData.module3.imgUrl">
+                        <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item+')'}"></div>
+                    </div>
+                </div>-->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"><i class="icon icon-last-page icon-css"></i></div>
+                <div class="swiper-button-next"><i class="icon icon-next-page icon-css"></i></div>
+            </div>
+            <ul class="data-left-content">
+                <li *ngFor="let item of pageData.module3.features">
+                    <i class="icon icon-vvv text-primary icon-css icon-css-right-inside"></i><label class="text-muted-l">{{item.name}}</label>
+                    <p>{{item.content}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 机柜 -->
+    <div class="bg-block-3" *ngIf="pageData && pageData['module4']">
+        <h2>{{pageData.module4.title}}</h2>
+        <div class="width-block img-top-block bg-black clearfloat">
+            <div class="swiper-container img-block">
+                <!--<div class="swiper-wrapper">
+                    <div class="swiper-slide" *ngFor="let item of pageData.module4.imgUrl">
+                        <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item.url[0]+')'}" *ngIf="item.imgWidth === 'long'"></div>
+                        <div class="img img-left-position" *ngIf="item.imgWidth === 'short'">
+                            <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item.url[0]+')'}" style="width: 590px;"></div>
+                            <div class="img img-left-position" style="width: 20px;left:590px;background-image: url('https://static.eflycloud.com/V5/pc/image/doc/dataCenter/splits2.png ')"></div>
+                            <div class="img img-left-position" style="width: 590px;left: 610px;" [ngStyle]="{'background-image': 'url('+item.url[1]+')'}"></div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="swiper-pagination" [hidden]="pageData.module4.imgUrl.length === 1"></div>
+                <div class="swiper-button-prev" [hidden]="pageData.module4.imgUrl.length === 1"><i class="icon icon-last-page icon-css"></i></div>
+                <div class="swiper-button-next" [hidden]="pageData.module4.imgUrl.length === 1"><i class="icon icon-next-page icon-css"></i></div>
+            </div>
+            <ul class="data-bottom-content float-left">
+                <li *ngFor="let item of pageData.module4.features.leftContent">
+                    <i class="icon icon-vvv text-primary icon-css icon-css-right-inside"></i><label class="text-muted-l">{{item.name}}</label>
+                    <p>{{item.content}}</p>
+                </li>
+            </ul>
+            <ul class="data-bottom-content float-right data-right-block">
+                <li *ngFor="let item of pageData.module4.features.rightContent">
+                    <i class="icon icon-vvv text-primary icon-css icon-css-right-inside"></i><label class="text-muted-l">{{item.name}}</label>
+                    <p>{{item.content}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 安全系统、网络 -->
+    <div class="bg-block-2" *ngIf="pageData && pageData['module5']">
+        <div class="width-block clearfloat">
+            <div class="float-left" style="width:590px">
+                <h2>{{pageData.module5.leftContent.title}}</h2>
+                <div class="img-top-block bg-white clearfloat">
+                    <!--<div class="swiper-container img-block">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" *ngFor="let item of pageData.module5.leftContent.imgUrl">
+                                <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item+')'}"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination" [hidden]="pageData.module5.leftContent.imgUrl.length === 1"></div>
+                        <div class="swiper-button-prev" [hidden]="pageData.module5.leftContent.imgUrl.length === 1"><i class="icon icon-last-page icon-css"></i></div>
+                        <div class="swiper-button-next" [hidden]="pageData.module5.leftContent.imgUrl.length === 1"><i class="icon icon-next-page icon-css"></i></div>
+                    </div>-->
+                    <ul class="data-bottom-content" style="width: 100%;">
+                        <li *ngFor="let item of pageData.module5.leftContent.features">
+                            <i class="icon icon-vvv text-primary icon-css icon-css-right-inside" *ngIf="item.name !== ''"></i><label class="text-muted-l">{{item.name}}</label>
+                            <p>{{item.content}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="float-right" style="width:590px">
+                <h2>{{pageData.module5.rightContent.title}}</h2>
+                <div class="img-top-block bg-white clearfloat">
+                    <!--<div class="swiper-container img-block">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" *ngFor="let item of pageData.module5.rightContent.imgUrl">
+                                <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item+')'}"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination" [hidden]="pageData.module5.rightContent.imgUrl.length === 1"></div>
+                        <div class="swiper-button-prev" [hidden]="pageData.module5.rightContent.imgUrl.length === 1"><i class="icon icon-last-page icon-css"></i></div>
+                        <div class="swiper-button-next" [hidden]="pageData.module5.rightContent.imgUrl.length === 1"><i class="icon icon-next-page icon-css"></i></div>
+                    </div>-->
+                    <ul class="data-bottom-content" style="width: 100%;">
+                        <li *ngFor="let item of pageData.module5.rightContent.features">
+                            <i class="icon icon-vvv text-primary icon-css icon-css-right-inside" *ngIf="item.name !== ''"></i><label class="text-muted-l">{{item.name}}</label>
+                            <p>{{item.content}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 支撑团队 -->
+    <div class="bg-block-1" *ngIf="pageData && pageData['module6']">
+        <h2>{{pageData.module6.title}}</h2>
+        <div class="width-block img-left-block bg-white clearfloat">
+            <!--<div class="swiper-container img-block img-left-position">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" *ngFor="let item of pageData.module6.imgUrl">
+                        <div class="img img-left-position" [ngStyle]="{'background-image': 'url('+item+')'}"></div>
+                    </div>
+                </div>
+                <div class="swiper-pagination" [hidden]="pageData.module6.imgUrl.length === 1"></div>
+                <div class="swiper-button-prev" [hidden]="pageData.module6.imgUrl.length === 1"><i class="icon icon-last-page icon-css"></i></div>
+                <div class="swiper-button-next" [hidden]="pageData.module6.imgUrl.length === 1"><i class="icon icon-next-page icon-css"></i></div>
+            </div>-->
+            <ul class="data-right-content">
+                <li *ngFor="let item of pageData.module6.features">
+                    <i class="icon icon-vvv text-primary icon-css icon-css-right-inside"></i><label class="text-muted-l" style="width: 250px;">{{item.name}}</label>
+                    <p>{{item.content}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--侧边导航-->
+    <!--<div>
+        <app-home-nav></app-home-nav>
+    </div>-->
+
+    <!--尾部-->
+    <!--<div class="footer-config min-width-block footer-bg">
+        <app-footer-two></app-footer-two>
+        <app-footer class="clear" [fontColor]=false></app-footer>
+    </div>-->
+</div>
+
+<!-- 视频播放插件 -->
+<!--<app-show-video [isShow]=isShow [videoSrc]=videoSrc (closeVideo)="isShowVideo($event)"></app-show-video>-->
