@@ -49,35 +49,6 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 // global['Prism'] = null;
 // --------------
 
-
-// const jsdom = require('jsdom');
-// const { JSDOM } = jsdom;
-// const win = new JSDOM(template);
-// global['window'] = win;
-// // or even
-// global['document'] = win.document;
-// // othres mock
-// global['CSS'] = null;
-// // global['XMLHttpRequest'] = require('xmlhttprequest').XMLHttpRequest;
-// global['Prism'] = null;
-// // --------------
-// global['DOMTokenList'] = win.DOMTokenList;
-// global['Node'] = win.Node;
-// global['Text'] = win.Text;
-// global['HTMLElement'] = win.HTMLElement;
-// global['navigator'] = win.navigator;
-
-
-//------------------3d
-// import { createWindowMocks } from '@trilon/ng-universal';
-// Make sure you grab wherever your index.html is, we want to use that html as a -base- for Domino
-// createWindowMocks(template);
-// createWindowMocks(template, /* additional window mocks*/ {
-//   $: {},
-//   someOtherWindowProp: {}
-// })
-//---------------------
-
 global['window'] = function() {};
 global['$'] = (function() {
     function JQuery() {}
