@@ -37,7 +37,69 @@ express - Node Express 服务器
 
 
 ## 常见问题
-请点击 [/angular/universal/blob/master/docs/gotchas.md](https://github.com/angular/universal/blob/master/docs/gotchas.md)
+1.使用浏览器 API
+相信会有同学在打包的时候出现过下面的报错问题
+
+ReferenceError: window is not defined
+或者
+
+ReferenceError: document is not defined
+因为这些是浏览器独有的原生对象（比如 window、document、navigator 或 location），在服务器上面是没有的，因此运行的时候会报错。因此，我们需要对使用浏览器的API方法做好兼容。
+
+方案1：在server.ts，引入domino做兼容
+
+const domino = require('domino');
+const win = domino.createWindow(template);
+
+global['window'] = win;
+global['document'] = win.document;
+global['DOMTokenList'] = win.DOMTokenList;
+global['Node'] = win.Node;
+global['Text'] = win.Text;
+global['HTMLElement'] = win.HTMLElement;
+global['navigator'] = win.navigator;
+但是，domino并非兼容了所有浏览器的api，只是兼容了大部分方法（有兴趣的同学可以看，domin的源码 https://github.com/fgnass/domino）。但是如果是用到的api不多，可以考虑用这个方案。
+
+方案2：使用Angular官方推荐的方法
+
+通过PLATFORM_ID令牌注入的对象来检查当前平台是浏览器还是服务器，从而解决该问题。判断是浏览器环境，才执行使用到浏览器方法的代码片段。不过个人觉得有些麻烦，因为在用到浏览器独有API方法的地方都得做引入判断兼容。
+
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+
+constructor(@Inject(PLATFORM_ID) private platformId: Object) { ... }
+
+ngOnInit() {
+  if (isPlatformBrowser(this.platformId)) {
+    // 浏览器代码
+    // eg:let url=window.location.href;
+ ...
+  }
+  if (isPlatformServer(this.platformId)) {
+    // 服务器代码
+...
+  }
+}
+2.使用第三方库，例如jq
+ReferenceError: $ is not defined
+方案1：使用Angular官方推荐的方法
+
+和上面一样，检查当前平台是浏览器还是服务器，执行相应的代码。
+
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+
+constructor(@Inject(PLATFORM_ID) private platformId: Object) { ... }
+
+ngOnInit() {
+  if (isPlatformBrowser(this.platformId)) {
+    // 浏览器代码
+    // eg:let userID =$.cookie('userID');
+ ...
+  }
+}
+
+查看更多，请点击 [/angular/universal/blob/master/docs/gotchas.md](https://github.com/angular/universal/blob/master/docs/gotchas.md)
 
 # License
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
