@@ -1,4 +1,4 @@
-# Angular Universal Starter
+# Angular Universal Starter项目
 
 ![Angular Universal](https://angular.io/generated/images/marketing/concept-icons/universal.png)
 
@@ -30,14 +30,14 @@ express - Node Express 服务器
 ### 开发环境 (Client-side 客户端渲染)
 *  `npm run start` 或者 `ng serve`
 
-### 生产环境 (打包运行ssr服务)
+### 生产环境 (打包并运行ssr服务)
 **`npm run build:ssr && npm run serve:ssr`** - 打包（npm run build:ssr），运行ssr服务（npm run serve:ssr）
 **`http://localhost:4000`**--在浏览器访问
 
 
 
 ## 常见问题
-Moved to [/angular/universal/blob/master/docs/gotchas.md](https://github.com/angular/universal/blob/master/docs/gotchas.md)
+请点击 [/angular/universal/blob/master/docs/gotchas.md](https://github.com/angular/universal/blob/master/docs/gotchas.md)
 
 # License
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
