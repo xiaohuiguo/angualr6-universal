@@ -37,7 +37,7 @@ express - Node Express 服务器
 
 
 ## 常见问题
-1.使用浏览器 API
+### 1. 使用浏览器 API
 
 相信会有同学在打包的时候出现过下面的报错问题
 
@@ -84,7 +84,7 @@ express - Node Express 服务器
       }
     }
 
-2.使用第三方库，例如jq
+### 2. 使用第三方库，例如jq
 
 
     ReferenceError: $ is not defined
@@ -106,13 +106,13 @@ express - Node Express 服务器
      ...
       }
     }
-3.setTimeout & setInterval
+### 3. setTimeout & setInterval
 
 使用 setTimeout 会降低服务器端渲染的速度，而使用 setInterval 可能会导致渲染失败。
 如果在 AppComponent 的构造函数中使用了 setInterval ,而且没有关掉则会导致在浏览器端没有响应。推测应该是在执行定时器的时候，程序会认为渲染还没有结束，所以导致失败。
 如果要非要用setTimeout & setInterval，那就跟上面一样，检查当前平台是浏览器还是服务器，执行相应的代码。
 
-4.http请求重复问题（浏览器/服务器各请求一次）
+### 4. http请求重复问题（浏览器/服务器各请求一次）
 
 查看更多，请点击 [/angular/universal/blob/master/docs/gotchas.md](https://github.com/angular/universal/blob/master/docs/gotchas.md)
 
