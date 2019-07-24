@@ -5,10 +5,15 @@
 ## 入门
 
 在开始之前，下列包是必须安装的（示例项目均已配置好，只需 npm install 即可）：
+
 @angular/platform-server - Universal 的服务端元件。
+
 @nguniversal/module-map-ngfactory-loader - 用于处理服务端渲染环境下的惰性加载。
+
 @nguniversal/express-engine - Universal 应用的 Express 引擎。
+
 ts-loader - 用于对服务端应用进行转译。
+
 express - Node Express 服务器
 
 ---
