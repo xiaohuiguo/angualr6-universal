@@ -113,6 +113,58 @@ express - Node Express 服务器
 如果要非要用setTimeout & setInterval，那就跟上面一样，检查当前平台是浏览器还是服务器，执行相应的代码。
 
 ### 4. http请求重复问题（浏览器/服务器各请求一次）
+方法1：使用 TransferHttpCacheModule
+使用 TransferHttpCacheModule 很简单，代码不需要改动。在 app.module.ts 中导入之后，Angular自动会将服务端请求缓存到客户端，换句话说就是服务端请求到数据会自动传输到客户端，客户端接收到数据之后就不会再发送请求了。
+
+方法2：使用 BrowserTransferStateModule
+该方法稍微复杂一些，需要改动一些代码。
+
+调整 home.component.ts 代码如下：
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+
+const KFCLIST_KEY = makeStateKey('kfcList');
+
+@Component({
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
+})
+export class HomeComponent implements OnInit, OnDestroy {
+    constructor(public http: HttpClient,
+                private state: TransferState) {
+    }
+    
+    ngOnInit() {
+    
+        // 采用一个标记来区分服务端是否已经拿到了数据，如果没拿到数据就在客户端请求，如果已经拿到数据就不发请求
+        const kfcList：any[] = this.state.get(KFCLIST_KEY, null as any);
+
+        if (!this.kfcList) {
+            this.poiSearch(this.keyword, '北京市').subscribe((data: any) => {
+                console.log(data);
+                this.state.set(KFCLIST_KEY, data as any); // 存储数据
+            });
+        }
+    }
+    
+    ngOnDestroy() {
+        if (typeof window === 'object') {
+            this.state.set(KFCLIST_KEY, null as any); // 删除数据
+        }
+    }
+    
+    poiSearch(text: string, city?: string): Observable<any> {
+        return this.http.get(encodeURI(`http://restapi.amap.com/v3/place/text?keywords=${text}&city=${city}&offset=20&key=55f909211b9950837fba2c71d0488db9&extensions=all`));
+    }
+}
+使用 const KFCLIST_KEY = makeStateKey('kfcList') 创建储存传输数据的 StateKey
+在 HomeComponent 的构造函数中注入 TransferState
+在 ngOnInit 中根据 this.state.get(KFCLIST_KEY, null as any) 判断数据是否存在（不管是服务端还是客户端），存在就不再请求，不存在则请求数据并通过 this.state.set(KFCLIST_KEY, data as any) 存储传输数据
+在 ngOnDestroy 中根据当前是否客户端来决定是否将存储的数据进行删除
 
 查看更多，请点击 [/angular/universal/blob/master/docs/gotchas.md](https://github.com/angular/universal/blob/master/docs/gotchas.md)
 
