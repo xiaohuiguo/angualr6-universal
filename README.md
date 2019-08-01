@@ -17,17 +17,19 @@ ts-loader - 用于对服务端应用进行转译。
 express - Node Express 服务器
 
 ### 主要修改文件
+
 *表示修改的文件，+表示添加的文件
-src/
-     app/   
-           app.module.ts *---客户端启动模块
-           app.server.module.ts + ---服务器启动模块
-     main.server.ts + ---服务器入口文件
-     tsconfig.server.json   + ---服务器ts编辑配置文件
-     
-server.ts + ---服务器配置文件
-angular.json *---ng配置文件
-package.json *---打包配置文件
+
+  src/
+  
+      app/        
+           app.module.ts *---客户端启动模块	   
+           app.server.module.ts + ---服务器启动模块	   
+      main.server.ts + ---服务器入口文件     
+      tsconfig.server.json   + ---服务器ts编辑配置文件     
+      server.ts + ---服务器配置文件     
+      angular.json *---ng配置文件
+      package.json *---打包配置文件
 
 ### 服务器端渲染（SSR）
 把预编译好的AppServerModule 传入到 PlatformServer 的 renderModuleFactory() 方法中，它会帮助我们初始化应用，将结果返回给客户端。其中，AppServerModuleNgFactory，provideModuleMap和LAZY_MODULE_MAP 是经过 wepack 打包后 通过 require 进来的参数或方法，renderModuleFactory需要从@angular/platform-server的包中import进来
