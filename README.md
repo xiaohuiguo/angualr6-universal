@@ -6,15 +6,15 @@
 
 在开始之前，下列包是必须安装的（示例项目均已配置好，只需 npm install 即可）：
 
-@angular/platform-server - Universal 的编译包。
+`@angular/platform-server` - Universal 的编译包。
 
-@nguniversal/module-map-ngfactory-loader - 用于处理服务端渲染环境下的惰性加载。
+`@nguniversal/module-map-ngfactory-loader` - 用于处理服务端渲染环境下的惰性加载。
 
-@nguniversal/express-engine - Universal 应用的 Express 引擎。
+`@nguniversal/express-engine - Universal` 应用的 Express 引擎。
 
-ts-loader - 用于对服务端应用进行转译。
+`ts-loader` - 用于对服务端应用进行转译。
 
-express - Node Express 服务器
+`express` - Node Express 服务器
 
 ### 主要修改文件
 
@@ -30,7 +30,7 @@ express - Node Express 服务器
       package.json *---打包配置文件`
 
 ### 服务器端渲染（SSR）
-把预编译好的AppServerModule 传入到 PlatformServer 的 renderModuleFactory() 方法中，它会帮助我们初始化应用，将结果返回给客户端。其中，AppServerModuleNgFactory，provideModuleMap和LAZY_MODULE_MAP 是经过 wepack 打包后 通过 require 进来的参数或方法，renderModuleFactory需要从@angular/platform-server的包中import进来
+把预编译好的`AppServerModule` 传入到 `PlatformServer` 的 `renderModuleFactory()` 方法中，它会帮助我们初始化应用，将结果返回给客户端。其中，`AppServerModuleNgFactory`，`provideModuleMap`和`LAZY_MODULE_MAP` 是经过 `wepack` 打包后 通过 `require` 进来的参数或方法，`renderModuleFactory`需要从`@angular/platform-server`的包中`import`进来
  
     
     app.engine('html', (_, options, callback) => {
@@ -47,7 +47,7 @@ express - Node Express 服务器
     });
     
    
-在使用 express 框架的nodejs中，还可以使用更加便捷的方法---本项目就是使用这种方法；
+在使用 `express` 框架的`nodejs`中，还可以使用更加便捷的方法---本项目就是使用这种方法；
 
 安装依赖 
 
@@ -106,7 +106,7 @@ dist/server下的文件就是服务端渲染所需要的代码，你写的所有
     global['HTMLElement'] = win.HTMLElement;
     global['navigator'] = win.navigator;
  
-但是，domino并非兼容了所有浏览器的api，只是兼容了大部分方法（有兴趣的同学可以看，domin的源码 [https://github.com/fgnass/domino](https://github.com/fgnass/domino)）。但是如果是用到的api不多，可以考虑用这个方案。
+但是，`domino`并非兼容了所有浏览器的api，只是兼容了大部分方法（有兴趣的同学可以看，`domin`的源码 [https://github.com/fgnass/domino](https://github.com/fgnass/domino)）。但是如果是用到的api不多，可以考虑用这个方案。
 
 方案2：使用Angular官方推荐的方法
 
@@ -135,7 +135,7 @@ dist/server下的文件就是服务端渲染所需要的代码，你写的所有
     ReferenceError: $ is not defined
 
 
-方案1：使用Angular官方推荐的方法
+方案1：使用`Angular`官方推荐的方法
 
 和上面一样，检查当前平台是浏览器还是服务器，执行相应的代码。
 
@@ -151,22 +151,22 @@ dist/server下的文件就是服务端渲染所需要的代码，你写的所有
      ...
       }
     }
-### 3. setTimeout & setInterval
+### 3. `setTimeout` & `setInterval`
 
-使用 setTimeout 会降低服务器端渲染的速度，而使用 setInterval 可能会导致渲染失败。
-如果在 AppComponent 的构造函数中使用了 setInterval ,而且没有关掉则会导致在浏览器端没有响应。推测应该是在执行定时器的时候，程序会认为渲染还没有结束，所以导致失败。
-如果要非要用setTimeout & setInterval，那就跟上面一样，检查当前平台是浏览器还是服务器，执行相应的代码。
+使用 `setTimeout` 会降低服务器端渲染的速度，而使用` setInterval `可能会导致渲染失败。
+如果在 `AppComponent` 的构造函数中使用了 `setInterval `,而且没有关掉则会导致在浏览器端没有响应。推测应该是在执行定时器的时候，程序会认为渲染还没有结束，所以导致失败。
+如果要非要用`setTimeout` & `setInterval`，那就跟上面一样，检查当前平台是浏览器还是服务器，执行相应的代码。
 
 ### 4. http请求重复问题（浏览器/服务器各请求一次）
 
-方法1：使用 TransferHttpCacheModule
-使用 TransferHttpCacheModule 很简单，代码不需要改动。在 app.module.ts 中导入之后，Angular自动会将服务端请求缓存到客户端，换句话说就是服务端请求到数据会自动传输到客户端，客户端接收到数据之后就不会再发送请求了。
+方法1：使用 `TransferHttpCacheModule`
+使用 `TransferHttpCacheModule` 很简单，代码不需要改动。在 `app.module.ts` 中导入之后，`Angular`自动会将服务端请求缓存到客户端，换句话说就是服务端请求到数据会自动传输到客户端，客户端接收到数据之后就不会再发送请求了。
 
-方法2：使用 BrowserTransferStateModule
+方法2：使用 `BrowserTransferStateModule`
 该方法稍微复杂一些，需要改动一些代码。
 
 
-调整 home.component.ts 代码如下：
+调整` home.component.ts` 代码如下：
 
 
     import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -209,12 +209,13 @@ dist/server下的文件就是服务端渲染所需要的代码，你写的所有
     }
 }
 
-使用 const KFCLIST_KEY = makeStateKey('kfcList') 创建储存传输数据的 StateKey
-在 HomeComponent 的构造函数中注入 TransferState
-在 ngOnInit 中根据 this.state.get(KFCLIST_KEY, null as any) 判断数据是否存在（不管是服务端还是客户端），存在就不再请求，不存在则请求数据并通过 this.state.set(KFCLIST_KEY, data as any) 存储传输数据
-在 ngOnDestroy 中根据当前是否客户端来决定是否将存储的数据进行删除
+使用 `const KFCLIST_KEY = makeStateKey('kfcList')` 创建储存传输数据的` StateKey`
+在 `HomeComponent` 的构造函数中注入 `TransferState`
+在 `ngOnInit`中根据 `this.state.get(KFCLIST_KEY, null as any)` 判断数据是否存在（不管是服务端还是客户端），存在就不再请求，不存在则请求数据并通过 `this.state.set(KFCLIST_KEY, data as any)` 存储传输数据
+在 `ngOnDestroy` 中根据当前是否客户端来决定是否将存储的数据进行删除
+
+### 其他
 
 查看更多，请点击 [/angular/universal/blob/master/docs/gotchas.md](https://github.com/angular/universal/blob/master/docs/gotchas.md)
 
-# License
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
+
