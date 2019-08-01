@@ -84,20 +84,17 @@ app.engine('html', ngExpressEngine({
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
-// Example Express Rest API endpoints
-// app.get('/api/**', (req, res) => { });
-
-// Server static files from /browser
+// /browser 目录下的静态文件
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {
   maxAge: '1y'
 }));
 
-// All regular routes use the Universal engine
+// Universal engine 通用路由
 app.get('*', (req, res) => {
   res.render('index', { req });
 });
 
-// Start up the Node server
+// 启动node服务器
 app.listen(PORT, () => {
   console.log(`Node Express server listening on http://localhost:${PORT}`);
   // console.log(template);
