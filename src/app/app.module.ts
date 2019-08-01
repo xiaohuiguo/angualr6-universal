@@ -22,7 +22,10 @@ import { DataService } from './data-center/services/data.service';
     GuangzhouDatacenterComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'ng-universal-demo'}), // 打包时的id，只要保证和其它配置不重复即可。
+    //Angular 会把 appId 值（它可以是任何字符串）添加到服务端渲染页面的样式名中，以便它们在客户端应用启动时可以被找到并移除。
+    //此时，我们可以通过依赖注入（@Inject(PLATFORM_ID) 及 @Inject(APP_ID)）取得关于当前平台和 appId 的运行时信息，以此来判断运行的是什么环境
+    //isPlatformBrowser(platformId) ? 'in the browser' : 'on the server';通过判断platformId如果存在则是在浏览器中运行，如果是false则是服务器环境
+    BrowserModule.withServerTransition({appId: 'ng-universal-demo'}),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full'},
       { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'},
