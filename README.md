@@ -18,9 +18,7 @@ express - Node Express 服务器
 
 ### 主要修改文件
 
-*表示修改的文件，+表示添加的文件
-  
-  `src/
+*表示修改的文件，+表示添加的文件 src/
   
       app/        
            app.module.ts *---客户端启动模块	   
