@@ -21,7 +21,7 @@ express - Node Express 服务器
 ### 服务器端渲染（SSR）
 把预编译好的AppServerModule 传入到 PlatformServer 的 renderModuleFactory() 方法中，它会帮助我们初始化应用，将结果返回给客户端。其中，AppServerModuleNgFactory，provideModuleMap和LAZY_MODULE_MAP 是经过 wepack 打包后 通过 require 进来的参数或方法，renderModuleFactory需要从@angular/platform-server的包中import进来
  
-    ReferenceError: window is not defined
+    
     app.engine('html', (_, options, callback) => {
         renderModuleFactory(AppServerModuleNgFactory, {
         document: template, // index.html
@@ -43,12 +43,13 @@ express - Node Express 服务器
 示例代码
 `import { ngExpressEngine } from '@nguniversal/express-engine';`
 
-`app.engine('html', ngExpressEngine({
-  bootstrap: AppServerModuleNgFactory,
-  providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
-}));`
+    ReferenceError: window is not defined
+    app.engine('html', ngExpressEngine({
+        bootstrap: AppServerModuleNgFactory,
+        providers: [
+           provideModuleMap(LAZY_MODULE_MAP)
+        ]
+    }));
 
 ### 项目安装
 * `npm install`
