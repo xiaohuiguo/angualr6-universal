@@ -20,32 +20,35 @@ express - Node Express 服务器
 
 ### 服务器端渲染（SSR）
 把预编译好的AppServerModule 传入到 PlatformServer 的 renderModuleFactory() 方法中，它会帮助我们初始化应用，将结果返回给客户端。其中，AppServerModuleNgFactory，provideModuleMap和LAZY_MODULE_MAP 是经过 wepack 打包后 通过 require 进来的参数或方法，renderModuleFactory需要从@angular/platform-server的包中import进来
-
-app.engine('html', (_, options, callback) => {
-  renderModuleFactory(AppServerModuleNgFactory, {
-    document: template, // index.html
-    url: options.req.url,
-    // 懒加载模块配置
-    extraProviders: [
-      provideModuleMap(LAZY_MODULE_MAP)
-    ]
-  }).then(html => {
-    callback(null, html);
-  });
-});
+ 
+    ReferenceError: window is not defined
+    app.engine('html', (_, options, callback) => {
+        renderModuleFactory(AppServerModuleNgFactory, {
+        document: template, // index.html
+        url: options.req.url,
+        // 懒加载模块配置
+        extraProviders: [
+            provideModuleMap(LAZY_MODULE_MAP)
+        ]
+       }).then(html => {
+           callback(null, html);
+       });
+    });
+    
+   
 在使用 express 框架的nodejs中，还可以使用更加便捷的方法---本项目就是使用这种方法；
 
 安装依赖 
-$ npm install --save @nguniversal/express-engine
+`$ npm install --save @nguniversal/express-engine`
 示例代码
-import { ngExpressEngine } from '@nguniversal/express-engine';
+`import { ngExpressEngine } from '@nguniversal/express-engine';`
 
-app.engine('html', ngExpressEngine({
+`app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
   providers: [
     provideModuleMap(LAZY_MODULE_MAP)
   ]
-}));
+}));`
 
 ### 项目安装
 * `npm install`
