@@ -11,7 +11,7 @@ import {AppComponent} from './app.component';
     // by the ServerModule from @angular/platform-server.
     AppModule,
     ServerModule,
-    ModuleMapLoaderModule,
+    ModuleMapLoaderModule, // 懒加载模块处理
     ServerTransferStateModule,
   ],
   // Since the bootstrapped component is not inherited from your
